@@ -1,9 +1,11 @@
 const display = document.getElementById('output');
+const operatorDisplay = document.getElementById('operator-display');
 
 let firstNumber = 0;
 let secondNumber = 0;
 let operation = '';
 let currentStep = 'first';
+let shouldClearDisplay = false;
 
 document.querySelectorAll('button').forEach(button => {
   button.addEventListener('click', () => {
@@ -11,16 +13,18 @@ document.querySelectorAll('button').forEach(button => {
     
     if (value === 'C') {
       display.value = '';
+      operatorDisplay.textContent = '';
       firstNumber = 0;
       secondNumber = 0;
       operation = '';
       currentStep = 'first';
+      shouldClearDisplay = false;
     }
     
     if (!isNaN(value) || value === '.') {
-      if (currentStep === 'result' || display.value === '0') {
+      if (shouldClearDisplay) {
         display.value = '';
-        currentStep = 'first';
+        shouldClearDisplay = false;
       }
       
       display.value += value;
@@ -29,6 +33,7 @@ document.querySelectorAll('button').forEach(button => {
         firstNumber = Number(display.value);
       } else if (currentStep === 'second') {
         secondNumber = Number(display.value);
+        operatorDisplay.textContent = firstNumber + operation + display.value;
       }
     }
     
@@ -37,13 +42,19 @@ document.querySelectorAll('button').forEach(button => {
         calculateResult();
       }
       
+      firstNumber = Number(display.value);
       operation = value;
+      operatorDisplay.textContent = display.value + value;
       currentStep = 'second';
-      display.value = '';
+      shouldClearDisplay = true;
     }
     
     if (value === '=') {
+      if (currentStep === 'second') {
+        operatorDisplay.textContent = firstNumber + operation + display.value + '=';
+      }
       calculateResult();
+      shouldClearDisplay = true;
     }
   });
 });
