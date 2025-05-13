@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+   margin-top: 150px;
+   font-family: monospace;
+   align-items: center;
+   font-size: 3em;
+   font-weight: bolder;
+   justify-content: center;
+   display: flex;
+}
+
+div {
+    background-color: lightblue;
+    margin-left: 605px;
+    font-family: monospace;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
