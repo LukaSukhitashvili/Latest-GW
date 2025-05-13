@@ -12,52 +12,62 @@ document.querySelectorAll('button').forEach(button => {
     const value = button.textContent;
     
     if (value === 'C') {
-      display.value = '';
-      operatorDisplay.textContent = '';
-      firstNumber = 0;
-      secondNumber = 0;
-      operation = '';
-      currentStep = 'first';
-      shouldClearDisplay = false;
-    }
-    
-    if (!isNaN(value) || value === '.') {
-      if (shouldClearDisplay) {
-        display.value = '';
-        shouldClearDisplay = false;
-      }
-      
-      display.value += value;
-      
-      if (currentStep === 'first') {
-        firstNumber = Number(display.value);
-      } else if (currentStep === 'second') {
-        secondNumber = Number(display.value);
-        operatorDisplay.textContent = firstNumber + operation + display.value;
-      }
-    }
-    
-    if (['+', '-', '*', '/', '%'].includes(value)) {
-      if (currentStep === 'second') {
-        calculateResult();
-      }
-      
-      firstNumber = Number(display.value);
-      operation = value;
-      operatorDisplay.textContent = display.value + value;
-      currentStep = 'second';
-      shouldClearDisplay = true;
-    }
-    
-    if (value === '=') {
-      if (currentStep === 'second') {
-        operatorDisplay.textContent = firstNumber + operation + display.value + '=';
-      }
-      calculateResult();
-      shouldClearDisplay = true;
+      handleClearButton();
+    } else if (!isNaN(value) || value === '.') {
+      handleNumberButton(value);
+    } else if (['+', '-', '*', '/', '%'].includes(value)) {
+      handleOperatorButton(value);
+    } else if (value === '=') {
+      handleEqualsButton();
     }
   });
 });
+
+function handleClearButton() {
+  display.value = '';
+  operatorDisplay.textContent = '';
+  firstNumber = 0;
+  secondNumber = 0;
+  operation = '';
+  currentStep = 'first';
+  shouldClearDisplay = false;
+}
+
+function handleNumberButton(value) {
+  if (shouldClearDisplay) {
+    display.value = '';
+    shouldClearDisplay = false;
+  }
+  
+  display.value += value;
+  
+  if (currentStep === 'first') {
+    firstNumber = Number(display.value);
+  } else if (currentStep === 'second') {
+    secondNumber = Number(display.value);
+    operatorDisplay.textContent = firstNumber + operation + display.value;
+  }
+}
+
+function handleOperatorButton(value) {
+  if (currentStep === 'second') {
+    calculateResult();
+  }
+  
+  firstNumber = Number(display.value);
+  operation = value;
+  operatorDisplay.textContent = display.value + value;
+  currentStep = 'second';
+  shouldClearDisplay = true;
+}
+
+function handleEqualsButton() {
+  if (currentStep === 'second') {
+    operatorDisplay.textContent = firstNumber + operation + display.value + '=';
+  }
+  calculateResult();
+  shouldClearDisplay = true;
+}
 
 function calculateResult() {
   if (currentStep === 'first') {
@@ -68,11 +78,21 @@ function calculateResult() {
   
   let result = 0;
   
-  if (operation === '+') result = firstNumber + secondNumber;
-  if (operation === '-') result = firstNumber - secondNumber;
-  if (operation === '*') result = firstNumber * secondNumber;
-  if (operation === '/') result = firstNumber / secondNumber;
-  if (operation === '%') result = firstNumber % secondNumber;
+  if (operation === '+') {
+    result = firstNumber + secondNumber;
+  }
+  if (operation === '-') {
+    result = firstNumber - secondNumber;
+  }
+  if (operation === '*') {
+    result = firstNumber * secondNumber;
+  }
+  if (operation === '/') {
+    result = firstNumber / secondNumber;
+  }
+  if (operation === '%') {
+    result = firstNumber % secondNumber;
+  }
   
   display.value = result;
   firstNumber = result;
