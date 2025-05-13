@@ -14,13 +14,129 @@ h1 {
    display: flex;
 }
 
-div {
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.count div {
     background-color: lightblue;
-    margin-left: 605px;
     font-family: monospace;
     height: 50px;
     width: 50px;
-    align-items: center;
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    height: 28px;
+    width: 51px;
+    
+}
+
+ .btnA{
+    background-color: rgb(102, 102, 255);
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+    width: 51px;
+
+    
+}
+.btnB{
+    background-color: rgb(102, 102, 255);
+    color: white;
+    border-radius: 5px;
+    height: 28px;
+    width: 51px;
+
+}
+
+.btnC{
+    background-color: rgb(102, 102, 255);
+    color: white;
+    border-radius: 5px;
+    height: 28px;
+    width: 51px;
+} 
+
+
+
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 2em;
+        margin-top: 5vh;
+    }
+
+
+
+    body {
+    
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    div {
+        background-color: lightblue;
+        font-family: monospace;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+@media screen  and (min-width: 900px){
+      h1 {
+        font-size: 4em;
+        margin-top: 5vh;
+    }
+
+
+
+    body {
+    
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    div {
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    
+    button {
+        height: 50px;
+        width: 70px;
+        flex-direction: column;
+        align-items: center;
+    }
 }

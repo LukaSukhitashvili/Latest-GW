@@ -1,23 +1,23 @@
-let count = 0
+let count1 = 0
 
 function increase() {
-  count++
-  document.getElementById('count').innerHTML = count
+  count1++
+  document.getElementById('count1').innerHTML = count1
 }
 
 
 function reset() {
-  count = 0
-  document.getElementById('count').innerHTML = count
+  count1 = 0
+  document.getElementById('count1').innerHTML = count1
 }
 
 
 function decrease() {
-  count--
-  document.getElementById('count').innerHTML = count
+  count1--
+  document.getElementById('count1').innerHTML = count1
 }
 
 
-if (count == 0) {
-    count.innerHTML = red
+if (count1 == 0) {
+    count1.innerHTML = red
 }
